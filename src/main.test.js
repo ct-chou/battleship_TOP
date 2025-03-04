@@ -1,5 +1,8 @@
-const sum = require('./main.js');
+const ship1 = require('./main.js');
 
-test('add 1 + 2 to equal 3', () => {
-    expect(sum(1,2)).toBe(3);
+test('Ship functions', () => {
+    ship1.hit();
+    expect(ship1.isSunk()).toBe(false);
+    ship1.hit();
+    expect(ship1.isSunk()).toBe(true);
 });
