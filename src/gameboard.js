@@ -1,6 +1,6 @@
-const ship = require('./ship.js');
+import {ship} from './ship.js';
 
-function gameboard (row_num) {
+export function gameboard (row_num) {
     const board_length = row_num;
     const grid = Array.from({ length: row_num }, () => Array(row_num).fill(null));
     let shipHP = 0;
@@ -98,5 +98,3 @@ function gameboard (row_num) {
 
     return {place, receiveAttack};
 }
-
-module.exports = gameboard;
