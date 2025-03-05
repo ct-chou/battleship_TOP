@@ -1,3 +1,8 @@
+function player (name, type, length) {
+    const playerGameboard = gameboard(length);
+    return {name, type, playerGameboard};
+}
+
 // direction: horizontal or vertical
 function ship (length, direction) {
     let hits = 0;
@@ -119,4 +124,4 @@ function gameboard (row_num) {
     return {place, receiveAttack};
 }
 
-module.exports = {ship, gameboard};
+module.exports = {ship, gameboard, player};

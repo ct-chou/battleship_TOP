@@ -1,4 +1,4 @@
-const {ship, gameboard} = require('./main.js');
+const {ship, gameboard, player} = require('./main.js');
 
 test('Ship functions', () => {
     const ship1 = ship(2,'horizontal');
@@ -42,3 +42,15 @@ test('Receive Attack - all sunk', () => {
     expect(gameboard1.receiveAttack(0,3)).toBe('hit');
     expect(gameboard1.receiveAttack(1,3)).toBe('all sunk');
 });
+
+test('Player setup', () => {
+    let x_coord = 0;
+    let y_coord = 3;
+    const player1 = player('chris', 'real', 10);
+    const ship1 = ship(2,'horizontal');
+    expect(player1.playerGameboard.place(ship1, x_coord, y_coord)).toBe(true);
+    expect(player1.playerGameboard.receiveAttack(0,3)).toBe('hit');
+    expect(player1.playerGameboard.receiveAttack(1,3)).toBe('all sunk');
+    
+});
+
