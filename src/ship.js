@@ -1,7 +1,10 @@
 // direction: horizontal or vertical
-export function ship (length, direction) {
+export function ship (length, direction, shipID) {
     let hits = 0;
 
+    const getShipID = () => {
+        return shipID;
+    }
     const hit = () => {
         hits++;
         return true;
@@ -15,5 +18,5 @@ export function ship (length, direction) {
             return false;
         }
     }
-    return {length, direction, hit, isSunk};
+    return {length, direction, hit, isSunk, getShipID};
 }

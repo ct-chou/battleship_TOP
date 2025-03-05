@@ -112,6 +112,7 @@ export function gameboard (row_num, playerType) {
             updateBoardDOM().hitShip(getContainerTarget(), x, y);
             shipHP--;   
             if(grid[x][y].isSunk()) {
+                updateBoardDOM().shipSunk(grid[x][y].getShipID());
                 if(areAllSunk()) {
                     return 'all sunk';
                 }
