@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     updateBoardDOM().placeShip('container-left', 0,3);
     updateBoardDOM().placeShip('container-left', 0,4);
 
+    updateBoardDOM().hitShip('container-left', 0,0);
+    updateBoardDOM().missShip('container-left', 1,1);
+
 // const ship2 = ship(4, 'vertical');
 // const ship3 = ship(3, 'vertical');
 // const ship4 = ship(2, 'horizontal');
