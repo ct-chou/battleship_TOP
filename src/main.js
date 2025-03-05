@@ -23,6 +23,7 @@ function ship (length, direction) {
 function gameboard (row_num) {
     const board_length = row_num;
     const grid = Array.from({ length: row_num }, () => Array(row_num).fill(null));
+    let shipHP = 0;
 
     // test if placement of ship is in boundary of board
     const inBounds = (ship,x,y) => {
@@ -78,7 +79,17 @@ function gameboard (row_num) {
                 }        
             }
         }
+        shipHP += ship.length;
         return true;
+    }
+
+    const areAllSunk = () => {
+        if(shipHP == 0) {
+            return true
+        }
+        else {
+            return false;
+        }
     }
 
     const receiveAttack = (x,y) => {
@@ -92,8 +103,14 @@ function gameboard (row_num) {
         }
         else {
             grid[x][y].hit();
+            shipHP--;
             if(grid[x][y].isSunk()) {
-                return 'sunk ship'
+                if(areAllSunk()) {
+                    return 'all sunk';
+                }
+                else {
+                    return 'sunk ship'
+                }
             }
             return 'hit';
         }
