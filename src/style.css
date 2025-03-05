@@ -62,3 +62,10 @@ h1 {
     width: 80%;
     height: 80%;
 }
+
+.ship-safe {
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    background-color: #15ff00;
+}
