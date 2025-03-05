@@ -1,4 +1,6 @@
-const {ship, gameboard, player} = require('./main.js');
+const ship = require('./ship.js');
+const gameboard = require('./gameboard.js');
+const player = require('./player.js');
 
 test('Ship functions', () => {
     const ship1 = ship(2,'horizontal');
