@@ -53,6 +53,9 @@ h1 {
     border: 1px solid black;
     width: 100%;
     height: 100%;
+    aspect-ratio: 1/1;
+    min-width: 5px;
+    min-height: 5px;
 }
 
 .grid {
@@ -61,6 +64,7 @@ h1 {
     grid-template-columns: repeat(10, 1fr);
     width: 80%;
     height: 80%;
+    aspect-ratio: 1/1;
 }
 
 .ship-safe {

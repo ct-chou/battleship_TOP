@@ -85,6 +85,7 @@ export function gameboard (row_num, playerType) {
             }
         }
         shipHP += ship.length;
+        ship.shipPlaced(x,y);
         return true;
     }
 
@@ -112,7 +113,8 @@ export function gameboard (row_num, playerType) {
             updateBoardDOM().hitShip(getContainerTarget(), x, y);
             shipHP--;   
             if(grid[x][y].isSunk()) {
-                updateBoardDOM().shipSunk(grid[x][y].getShipID());
+                console.log(grid[x][y]);
+                updateBoardDOM().shipSunk(grid[x][y], getContainerTarget());
                 if(areAllSunk()) {
                     return 'all sunk';
                 }
