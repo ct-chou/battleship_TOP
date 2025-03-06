@@ -22,12 +22,19 @@ export function updateBoardDOM() {
         }
     }
 
-    const changeTurns = () => {
+    const gameOver = (winner) => {
+        document.getElementById('turn-header').textContent = 'Game Over';
+        document.getElementById('player-turn').textContent =`${winner.getName()} Wins!`;
+    }
+
+    const changeTurns = (player1, player2) => {
         if(currentPlayer == 'player1') {
             currentPlayer = 'player2';
+            document.getElementById('player-turn').textContent = player2.getName();
         }
         else {
             currentPlayer = 'player1';
+            document.getElementById('player-turn').textContent = player1.getName();
         }
     }    
     const placeShip = (containerID, row, col, shipID) => {
@@ -85,13 +92,14 @@ export function updateBoardDOM() {
             grid.appendChild(cell);
         }
     }
+    
     function player1Turn(cell, player1, player2) {
         const containerID = cell.getAttribute('id');
         const gridSide = containerID.split('-')[1];
         const row = containerID.split('-')[2];
         const col = containerID.split('-')[3];
      
-        if(updateBoardDOM().getCurrentPlayer() == 'player1') {
+        if(getCurrentPlayer() == 'player1') {
             // check if correct grid
             if(gridSide == 'left') {
                 return;
@@ -103,19 +111,20 @@ export function updateBoardDOM() {
                 }
                 else {
                     if(player2.playerGameboard.receiveAttack(row, col) == 'all sunk') {
-                        alert('all sunk, you win!');
+                        gameOver(player1);
                         return;
                     }
                     else {
-                        updateBoardDOM().changeTurns();  // switch turns
+                        changeTurns(player1, player2);  // switch turns
                         // have computer attack
-                        let attackResult = updateBoardDOM().computerAttack(player1);
+                        let attackResult = computerAttack(player1);
                         if(attackResult == 'all sunk') {
-                            alert('all sunk, you lose!');
+                            
+                            gameOver(player2);
                             return;
                         }
                         else {
-                            updateBoardDOM().changeTurns();
+                            changeTurns(player1, player2);
                             return;
                         }
                     }
@@ -125,5 +134,5 @@ export function updateBoardDOM() {
     
     }
 
-    return {placeShip, hitShip, missShip, unplaceShip, changeTurns, getCurrentPlayer, shipSunk, computerAttack, createGrid, player1Turn};
+    return {placeShip, hitShip, missShip, unplaceShip, changeTurns, getCurrentPlayer, shipSunk, createGrid, player1Turn, gameOver};
 }
